@@ -1,9 +1,13 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
+  "cli": {
+    "packageManager": "npm",
+    "analytics": "e6dc74c3-4180-450e-8cc7-9487f70913b8"
+  },
   "newProjectRoot": "projects",
   "projects": {
-    "my-app": {
+    "myApp": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -64,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "my-app:build:production"
+              "buildTarget": "myApp:build:production"
             },
             "development": {
-              "buildTarget": "my-app:build:development"
+              "buildTarget": "myApp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -97,8 +101,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": "e7dfe2ba-cc25-4744-a589-25fc33931774"
   }
 }
