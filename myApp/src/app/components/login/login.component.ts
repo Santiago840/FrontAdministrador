@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { Usuario } from '../../models/usuario';
 import { LoginService } from '../../services/login.service';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationModalComponent } from '../../modals/confirmation-modal/confirmation-modal.component';
+import { ErrorModalComponent } from '../../modals/error-modal/error-modal.component';
 
 
 @Component({
@@ -20,17 +24,39 @@ export class LoginComponent {
 
   mensajeError: string | null = null;
 
-  constructor(private loginService: LoginService) { }
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private dialog: MatDialog,
+  ) {}
+
+  openConfirmationModal(message: string): void {
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      width: '600px',
+      height: '150px',
+      data: { message: message }
+    });
+  }
+
+  openErrorModal(message: string): void {
+    const dialogRef = this.dialog.open(ErrorModalComponent, {
+      width: '600px',
+      height: '150px',
+      data: { message: message }
+    });
+  }
 
   onSubmit(): void {
+    this.mensajeError = null;  
+  
     this.loginService.loginUsuario(this.usuario).subscribe(
-      (response) => {
-        console.log('Respuesta del servidor:', response);
-        // Aquí puedes manejar la respuesta del servidor, como redirigir a otra página, guardar tokens de autenticación, etc.
-      },
-      (error) => {
-        console.error('Error en la solicitud:', error);
-        // Aquí puedes manejar el error, como mostrar un mensaje de error al usuario
+      response => {
+        if (response.message === 'Bienvenido') {
+          this.openConfirmationModal(`Bienvenido ${this.usuario.nombre}`);
+          this.router.navigate(['/pagina-principal']);
+        } else {
+          this.openErrorModal('Error en el nombre y/o contraseña');
+        }
       }
     );
   }

@@ -1,11 +1,21 @@
-<div class="login-container">
-    <h2>Login</h2>
-    <form (ngSubmit)="onSubmit()">
-        <label for="username">Nombre de usuario:</label>
-        <input type="text" id="nombre" name="Nombre" [(ngModel)]="usuario.nombre" placeholder="nombre" required>
-        <label for="contrasena">Contraseña:</label>
-        <input type="password" id="contrasena" name="contrasena" [(ngModel)]="usuario.contrasena" required>
-        <button type="submit">Iniciar sesión</button>
-    </form>
-    <p id="login-error" class="error-message"></p>
-</div>
+<body>
+    <div class="login-container">
+        <img src="/assets/copa.jpg">
+        <h2>Inicio de Sesión</h2>
+        <form class="formulario" (ngSubmit)="onSubmit()">
+            <div class="user-box">
+                <label class="lbNombre" for="username">Nombre:</label>
+                <input class="ipNombre" type="text" id="nombre" name="nombre" [(ngModel)]="usuario.nombre"
+                    placeholder="nombre" required>
+            </div>
+            <div class="user-box">
+                <label class="lbContrasena" for="contarsena">Contraseña:</label>
+                <input class="ipContrasena" type="password" id="contrasena" name="contrasena"
+                    [(ngModel)]="usuario.contrasena" placeholder="contraseña" required>
+            </div>
+            <button class="inicio" type="submit">Iniciar sesión</button>
+        </form>
+        <p id="login-error" class="error-message"></p>
+    </div>
+</body>
+

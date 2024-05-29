@@ -13,13 +13,19 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE  } from '@angular/material/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-
+import { EquiposComponent } from './components/equipos/equipos.component';
+import { EditarEquipoComponent } from './components/equipos/editar-equipo/editar-equipo.component';
+import { AgregarPartidosComponent } from './components/partidos/agregar-partidos/agregar-partidos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    EquiposComponent,
+    EditarEquipoComponent,
+    AgregarPartidosComponent,
   ],
+  
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -31,7 +37,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     MatListModule,
     MatDatepickerModule,
     MatInputModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-LA' },

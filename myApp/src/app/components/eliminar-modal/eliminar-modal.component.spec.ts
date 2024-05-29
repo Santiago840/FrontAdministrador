@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AgregarEquipoComponent } from './agregar-equipo.component';
+import { EliminarModalComponent } from './eliminar-modal.component';
 
-describe('AgregarEquipoComponent', () => {
-  let component: AgregarEquipoComponent;
-  let fixture: ComponentFixture<AgregarEquipoComponent>;
+describe('EliminarModalComponent', () => {
+  let component: EliminarModalComponent;
+  let fixture: ComponentFixture<EliminarModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AgregarEquipoComponent]
+      imports: [EliminarModalComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(AgregarEquipoComponent);
+    fixture = TestBed.createComponent(EliminarModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

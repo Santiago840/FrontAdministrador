@@ -9,9 +9,9 @@
 <body>
     <header>
         <div class="menu">
-            <a routerLink="/equipos">Equipos</a>
-            <a href="#" id="partidos">Partidos</a>
-            <a href="#" id="torneos">Torneos</a>
+            <a href="/equipos" id="equipos">Equipos</a>
+            <a href="/partidos" id="partidos">Partidos</a>
+            <a href="/torneos" id="torneos">Torneos</a>
         </div>
         <div class="icon-button">
             <i class="fas fa-user"></i>
@@ -20,23 +20,4 @@
     <div class="content" id="content">
         Equipos FEI
     </div>
-
-    <script>
-        const equiposLink = document.getElementById('equipos');
-        const partidosLink = document.getElementById('partidos');
-        const torneosLink = document.getElementById('torneos');
-        const content = document.getElementById('content');
-
-        equiposLink.addEventListener('click', () => {
-            content.textContent = 'Contenido de Equipos';
-        });
-
-        partidosLink.addEventListener('click', () => {
-            content.textContent = 'Contenido de Partidos';
-        });
-
-        torneosLink.addEventListener('click', () => {
-            content.textContent = 'Contenido de Torneos';
-        });
-    </script>
 </body>
