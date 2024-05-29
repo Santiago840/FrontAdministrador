@@ -3,11 +3,13 @@ import { Usuario } from '../../models/usuario';
 import { LoginService } from '../../services/login.service';
 import { FormGroup } from '@angular/forms';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent {
   public myForm!: FormGroup;
   usuario: Usuario = {
