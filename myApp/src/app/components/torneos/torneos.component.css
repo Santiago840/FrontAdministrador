@@ -103,3 +103,7 @@ button:hover {
 .status.pendiente {
     background-color: orange;
 }
+
+#agregar{
+    margin-bottom: 30px;
+}

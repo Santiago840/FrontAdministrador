@@ -25,7 +25,10 @@ export class TorneoService {
     return this.http.put<any>(`${this.baseApiUrl}/api/torneoU`, torneoData);
   }
   
-   
+  createTorneo(torneoData: any): Observable<any> {
+    return this.http.post<any>(`${this.baseApiUrl}/api/torneoC`, torneoData);
+  }
+  
   
   
 }

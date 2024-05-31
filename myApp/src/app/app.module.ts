@@ -19,7 +19,7 @@ import { AgregarPartidosComponent } from './components/partidos/agregar-partidos
 import { CommonModule } from '@angular/common';
 import { TorneosComponent } from './components/torneos/torneos.component';
 import { EditarTorneoComponent } from './components/editar-torneo/editar-torneo.component';
-
+import { AgregarTorneoComponent } from './components/agregar-torneo/agregar-torneo.component';
 
 
 @NgModule({
@@ -30,7 +30,8 @@ import { EditarTorneoComponent } from './components/editar-torneo/editar-torneo.
     EditarEquipoComponent,
     AgregarPartidosComponent,
     TorneosComponent,
-    EditarTorneoComponent
+    EditarTorneoComponent,
+    AgregarTorneoComponent
   ],
   
   imports: [

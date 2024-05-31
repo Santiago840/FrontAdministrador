@@ -60,19 +60,22 @@ export class TorneosComponent implements OnInit {
     this.torneoService.deleteTorneos(id).subscribe({
       next: (response) => {
         console.log('Eliminar torneo con ID:', id);
+        
+      },
+      error: (err) => {
+        console.error('Error eliminando el torneo:', err);
         this.openConfirmationModal('Torneo eliminado.');
         this.torneoService.getTorneos().subscribe(data => {
           this.torneos = data;
         });
-      },
-      error: (err) => {
-        console.error('Error eliminando el torneo:', err);
-        this.openErrorModal('Error eliminando el torneo.');
       }
     });
   }
 
   editTorneo(id: number): void {
     this.router.navigate(['/editar-torneo', id]); 
+  }
+  agregarTorneo():void{
+    this.router.navigate(['/agregar-torneo']); 
   }
 }

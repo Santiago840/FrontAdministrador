@@ -1,5 +1,6 @@
 <body>
     <div class="main-container">
+        <button id="agregar" class="add-button" (click)="agregarTorneo()">Agregar Nuevo Torneo</button>
         <div class="card" *ngFor="let torneo of torneos">
             <div class="header">
                 <h2>{{ torneo.Torneo }}</h2>
