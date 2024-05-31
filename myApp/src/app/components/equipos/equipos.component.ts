@@ -34,7 +34,7 @@ export class EquiposComponent implements OnInit {
         this.mensajeError = 'Error al obtener los equipos. Por favor, inténtelo de nuevo más tarde.';
       }
     );
-    
+
   }
 
   eliminarEquipo(idEquipo: number): void {
@@ -53,5 +53,25 @@ export class EquiposComponent implements OnInit {
   editarEquipo(idEquipo: number): void {
     this.router.navigate(['/editar-equipo', idEquipo]); // Navega a la pantalla de edición con el idEquipo
   }
-  
+
+  irPaginaAnterior() {
+    window.history.back();
+  }
+
+  logout() {
+    this.router.navigate(['/login']); // Cambia 'login.html' por la URL de tu página de login
+  }
+
+  irEquipos(): void {
+    this.router.navigate(['/equipos']);
+  }
+
+  irTorneos(): void {
+    this.router.navigate(['/torneos']);
+  }
+
+  irPartidos(): void {
+    this.router.navigate(['/partidos']);
+  }
+
 }

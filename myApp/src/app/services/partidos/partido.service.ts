@@ -30,8 +30,8 @@ export class PartidoService {
     );
   }
 
-  agregarPartido(agregarPartido: Partido): Observable<Partido> {
-    return this.http.post<Partido>(`${this.ApiURL}partido`, agregarPartido);
+  createPartido(partidoData: any): Observable<any> {
+    return this.http.post<any>(`${this.ApiURL}/equipoP`, partidoData);
   }
 
 }

@@ -1,36 +1,51 @@
-<div class="card">
-    <div class="card-body">
-      <form (ngSubmit)="submitForm()">
-        <div class="form-group">
-          <label for="nombre">Nombre:</label>
-          <input type="text" id="nombre" name="nombre" [(ngModel)]="torneo.nombre" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="deporte">Deporte:</label>
-            <select id="deporte" name="deporte" [(ngModel)]="torneo.idDeporte" class="form-control" required>
-              <option *ngFor="let deporte of deportes" [value]="deporte.id">{{ deporte.nombre }}</option>
-            </select>
-          </div>
-        <div class="form-group">
-          <label for="fechaInicio">Fecha de Inicio:</label>
-          <input type="date" id="fechaInicio" name="fechaInicio" [(ngModel)]="torneo.fechaInicio" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="fechaFin">Fecha de Fin:</label>
-          <input type="date" id="fechaFin" name="fechaFin" [(ngModel)]="torneo.fechaFin" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="estatus">Estatus:</label>
-          <select id="estatus" name="estatus" [(ngModel)]="torneo.estatus" class="form-control" required>
-            <option value="Pendiente">Pendiente</option>
-            <option value="En curso">En curso</option>
-            <option value="Finalizado">Finalizado</option>
-          </select>
-        </div>
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary">Agregar torneo</button>
-        </div>
-      </form>
+<header>
+  <div class="menu">
+    <a (click)="irEquipos()">Equipos</a>
+    <a (click)="irPartidos()">Partidos</a>
+    <a (click)="irTorneos()">Torneos</a>
+  </div>
+  <div class="icon-buttons">
+    <div class="icon-button" (click)="irPaginaAnterior()">
+      <i class="fas fa-arrow-left"></i>
+    </div>
+    <div class="icon-button" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i>
     </div>
   </div>
-  
+</header>
+<div class="card">
+  <div class="card-body">
+    <form (ngSubmit)="submitForm()">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" [(ngModel)]="torneo.nombre" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="deporte">Deporte:</label>
+        <select id="deporte" name="deporte" [(ngModel)]="torneo.idDeporte" class="form-control" required>
+          <option *ngFor="let deporte of deportes" [value]="deporte.id">{{ deporte.nombre }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="fechaInicio">Fecha de Inicio:</label>
+        <input type="date" id="fechaInicio" name="fechaInicio" [(ngModel)]="torneo.fechaInicio" class="form-control"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="fechaFin">Fecha de Fin:</label>
+        <input type="date" id="fechaFin" name="fechaFin" [(ngModel)]="torneo.fechaFin" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="estatus">Estatus:</label>
+        <select id="estatus" name="estatus" [(ngModel)]="torneo.estatus" class="form-control" required>
+          <option value="Pendiente">Pendiente</option>
+          <option value="En curso">En curso</option>
+          <option value="Finalizado">Finalizado</option>
+        </select>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Agregar torneo</button>
+      </div>
+    </form>
+  </div>
+</div>

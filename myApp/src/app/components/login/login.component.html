@@ -1,7 +1,11 @@
 <body>
-    <div class="login-container">
+    <header>
         <img src="/assets/copa.jpg">
         <h2>Inicio de Sesión</h2>
+    </header>
+
+    <div class="login-container">
+
         <form class="formulario" (ngSubmit)="onSubmit()">
             <div class="user-box">
                 <label class="lbNombre" for="username">Nombre:</label>
@@ -17,5 +21,24 @@
         </form>
         <p id="login-error" class="error-message"></p>
     </div>
+    <footer>
+        <div class="footer-left">
+            <div>Desarrolladores:</div>
+            <div>Brandon Aguilera</div>
+            <div>Santiago Chávez</div>
+            <div>Alan Armando</div>
+            <div>Brandon Velasquéz</div>
+        </div>
+        <div class="footer-right">
+            <a href="https://www.facebook.com/FEIUV" target="_blank">
+                <i class="fab fa-facebook icon"></i>
+            </a>
+            <a href="https://www.instagram.com/FEIUV" target="_blank">
+                <i class="fab fa-instagram icon"></i>
+            </a>
+            <a href="https://www.tiktok.com/@fei.uv" target="_blank">
+                <i class="fab fa-tiktok icon"></i>
+            </a>
+        </div>
+    </footer>
 </body>
-

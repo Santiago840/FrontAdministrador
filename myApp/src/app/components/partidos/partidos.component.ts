@@ -49,4 +49,28 @@ export class PartidosComponent {
     );
   }
 
+  agregarPartido(): void {
+    this.router.navigate(['/agregar-partido']);
+  }
+
+  irPaginaAnterior() {
+    window.history.back();
+  }
+
+  logout() {
+    this.router.navigate(['/login']); // Cambia 'login.html' por la URL de tu página de login
+  }
+
+  irEquipos(): void {
+    this.router.navigate(['/equipos']);
+  }
+
+  irTorneos(): void {
+    this.router.navigate(['/torneos']);
+  }
+
+  irPartidos(): void {
+    this.router.navigate(['/partidos']);
+  }
+
 }

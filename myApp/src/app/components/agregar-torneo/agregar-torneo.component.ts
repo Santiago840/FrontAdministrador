@@ -25,7 +25,19 @@ export class AgregarTorneoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
+  }
+
+  irEquipos(): void {
+    this.router.navigate(['/equipos']);
+  }
+
+  irTorneos(): void {
+    this.router.navigate(['/torneos']);
+  }
+
+  irPartidos(): void {
+    this.router.navigate(['/partidos']);
   }
 
   openConfirmationModal(message: string): void {
@@ -44,14 +56,22 @@ export class AgregarTorneoComponent implements OnInit {
         this.openConfirmationModal('Torneo creado.');
         this.router.navigate(['/torneos']);
         // Redirigir a alguna otra página, por ejemplo, la lista de torneos
-        
+
       },
       (error) => {
         console.error('Error actualizando el torneo:', error);
         // Manejar el error, podrías mostrar un mensaje de error al usuario
-        
+
       }
     );
   }
-  
+
+  irPaginaAnterior() {
+    window.history.back();
+  }
+
+  logout() {
+    this.router.navigate(['/login']); // Cambia 'login.html' por la URL de tu página de login
+  }
+
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TorneoService } from '../../services/torneo.service';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 import { ConfirmationModalComponent } from '../../modals/confirmation-modal/confirmation-modal.component';
 import { ErrorModalComponent } from '../../modals/error-modal/error-modal.component';
 import { OptionModalComponent } from '../../modals/option-modal/option-modal.component';
@@ -15,10 +15,10 @@ export class TorneosComponent implements OnInit {
   torneos: any[] = [];
 
   constructor(
-    private torneoService: TorneoService, 
+    private torneoService: TorneoService,
     private dialog: MatDialog,
     private router: Router // Inyectar Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.torneoService.getTorneos().subscribe(data => {
@@ -60,7 +60,7 @@ export class TorneosComponent implements OnInit {
     this.torneoService.deleteTorneos(id).subscribe({
       next: (response) => {
         console.log('Eliminar torneo con ID:', id);
-        
+
       },
       error: (err) => {
         console.error('Error eliminando el torneo:', err);
@@ -73,9 +73,29 @@ export class TorneosComponent implements OnInit {
   }
 
   editTorneo(id: number): void {
-    this.router.navigate(['/editar-torneo', id]); 
+    this.router.navigate(['/editar-torneo', id]);
   }
-  agregarTorneo():void{
-    this.router.navigate(['/agregar-torneo']); 
+  agregarTorneo(): void {
+    this.router.navigate(['/agregar-torneo']);
+  }
+
+  irEquipos(): void {
+    this.router.navigate(['/equipos']);
+  }
+
+  irTorneos(): void {
+    this.router.navigate(['/torneos']);
+  }
+
+  irPartidos(): void {
+    this.router.navigate(['/partidos']);
+  }
+
+  irPaginaAnterior() {
+    window.history.back();
+  }
+
+  logout() {
+    this.router.navigate(['/login']); // Cambia 'login.html' por la URL de tu página de login
   }
 }

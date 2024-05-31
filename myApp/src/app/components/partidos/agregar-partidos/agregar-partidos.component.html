@@ -1,5 +1,5 @@
 <body>
-    <form>
+    <form (ngSubmit)="submitForm()">
         <div class="title">Agregar Partido</div>
         <div class="row">
             <div class="form-group">
@@ -27,10 +27,10 @@
             </div>
             <div class="form-group">
                 <label for="estatus">Estatus:</label>
-                <select id="estatus" name="estatus">
-                    <option value="finalizado">Finalizado</option>
-                    <option value="pendiente">Pendiente</option>
-                    <option value="cancelado">Cancelado</option>
+                <select id="estatus" name="estatus" [(ngModel)]="partido.estatus" class="form-control" required>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="En curso">En curso</option>
+                    <option value="Finalizado">Finalizado</option>
                 </select>
             </div>
             <div class="form-group">

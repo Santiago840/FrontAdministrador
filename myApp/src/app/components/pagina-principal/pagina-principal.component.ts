@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { EquiposService } from '../../services/equipos/equipos.service';
 import { Equipo } from '../../models/equipo';
@@ -8,7 +8,24 @@ import { Equipo } from '../../models/equipo';
   templateUrl: './pagina-principal.component.html',
   styleUrls: ['./pagina-principal.component.css']
 })
-export class PaginaPrincipalComponent {
+export class PaginaPrincipalComponent implements AfterViewInit {
+  @ViewChild('footer') footer!: ElementRef;
+
+
+  ngAfterViewInit() {
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const pageHeight = document.body.scrollHeight;
+
+      if (scrollPosition >= pageHeight) {
+        this.footer.nativeElement.style.display = 'flex';
+      } else {
+        this.footer.nativeElement.style.display = 'none';
+      }
+    });
+
+  }
+
   constructor(private router: Router, private equiposService: EquiposService) { }
 
   irEquipos(): void {
@@ -43,7 +60,7 @@ export class PaginaPrincipalComponent {
         this.mensajeError = 'Error al obtener los equipos. Por favor, inténtelo de nuevo más tarde.';
       }
     );
-    
+
   }
 
   eliminarEquipo(idEquipo: number): void {
@@ -61,5 +78,13 @@ export class PaginaPrincipalComponent {
 
   editarEquipo(idEquipo: number): void {
     this.router.navigate(['/editar-equipo', idEquipo]); // Navega a la pantalla de edición con el idEquipo
+  }
+
+  irPaginaAnterior() {
+    window.history.back();
+  }
+
+  logout() {
+    this.router.navigate(['/login']); // Cambia 'login.html' por la URL de tu página de login
   }
 }
