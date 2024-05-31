@@ -2,6 +2,7 @@ export interface Equipo {
     idEquipo: number;
     nombreEquipo: string;
     capitanEquipo: string;
+    jugadores: string[];
     jugador1: string;
     jugador2: string;
     jugador3: string;
@@ -21,4 +22,6 @@ export interface Equipo {
     matricula8: string;
     matricula9: string;
     matricula10: string;
+    nombre: string;
+    nombreTorneo: string;
 }

@@ -16,11 +16,11 @@ export const routes: Routes = [
     { path: 'pagina-principal', component: PaginaPrincipalComponent },
     { path: 'torneos', component: TorneosComponent },
     { path: 'partidos', component: PartidosComponent },
-    { path: 'editar-equipo', component: EditarEquipoComponent},
-    { path: 'agregar-partidos', component: AgregarPartidosComponent},
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
     {path: 'agregar-torneo', component: AgregarTorneoComponent},
-    {path:  'editar-torneo/:id',component: EditarTorneoComponent}
+    {path:  'editar-torneo/:id',component: EditarTorneoComponent},
+    { path: 'editar-equipo/:idEquipo', component: EditarEquipoComponent},
+    { path: 'agregar-partido', component: AgregarPartidosComponent},
+    { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

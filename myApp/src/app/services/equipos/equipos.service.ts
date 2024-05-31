@@ -20,6 +20,15 @@ export class EquiposService {
     );
   }
 
+  getEquipo(idEquipo: number): Observable<any> {
+    return this.http.get<any[]>(this.ApiURL + 'equipoG/'+`${idEquipo}`).pipe(
+      catchError((error) => {
+        console.error('Error al cargar equipo:', error);
+        return throwError(error);
+      })
+    );
+  }
+
   eliminarEquipo(idEquipo: number): Observable<any> {
     return this.http.delete<any>(`${this.ApiURL}equipoD/${idEquipo}`).pipe(
       catchError(error => {
@@ -27,5 +36,9 @@ export class EquiposService {
         return throwError(error);
       })
     );
+  }
+
+  updateEquipo(equipoData: any): Observable<any> {
+    return this.http.put<any>(`${this.ApiURL}equipoU`, equipoData);
   }
 }

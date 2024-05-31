@@ -22,17 +22,19 @@ export class EquiposComponent implements OnInit {
   }
 
   obtenerEquipos(): void {
-    this.mensajeError = null;
-
     this.equiposService.getEquipos().subscribe(
       response => {
-        this.equipos = response;
+        this.equipos = response.map((equipo: any) => {
+          equipo.jugadores = equipo.jugadores.split(',').map((jugador: string) => jugador.trim());
+          return equipo;
+        });
       },
       error => {
         console.error('Error al obtener equipos:', error);
         this.mensajeError = 'Error al obtener los equipos. Por favor, inténtelo de nuevo más tarde.';
       }
     );
+    
   }
 
   eliminarEquipo(idEquipo: number): void {
@@ -47,4 +49,9 @@ export class EquiposComponent implements OnInit {
       }
     );
   }
+
+  editarEquipo(idEquipo: number): void {
+    this.router.navigate(['/editar-equipo', idEquipo]); // Navega a la pantalla de edición con el idEquipo
+  }
+  
 }

@@ -11,7 +11,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, MAT_DATE_LOCALE  } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { EquiposComponent } from './components/equipos/equipos.component';
 import { EditarEquipoComponent } from './components/equipos/editar-equipo/editar-equipo.component';
@@ -20,7 +20,8 @@ import { CommonModule } from '@angular/common';
 import { TorneosComponent } from './components/torneos/torneos.component';
 import { EditarTorneoComponent } from './components/editar-torneo/editar-torneo.component';
 import { AgregarTorneoComponent } from './components/agregar-torneo/agregar-torneo.component';
-
+import { PartidosComponent } from './components/partidos/partidos.component';
+import { PaginaPrincipalComponent } from './components/pagina-principal/pagina-principal.component';
 
 @NgModule({
   declarations: [
@@ -31,9 +32,10 @@ import { AgregarTorneoComponent } from './components/agregar-torneo/agregar-torn
     AgregarPartidosComponent,
     TorneosComponent,
     EditarTorneoComponent,
-    AgregarTorneoComponent
+    AgregarTorneoComponent,
+    PartidosComponent,
+    PaginaPrincipalComponent
   ],
-  
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -50,8 +52,8 @@ import { AgregarTorneoComponent } from './components/agregar-torneo/agregar-torn
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-LA' },
-    provideAnimationsAsync(), 
+    provideAnimationsAsync(),
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
