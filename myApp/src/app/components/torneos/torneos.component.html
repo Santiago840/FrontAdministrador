@@ -1,26 +1,26 @@
 <body>
-    <div class="card">
-        <h2>Fierro Copa</h2>
-        <div class="content">
-            <img src="../../../assets/copa.jpg" alt="Imagen del Torneo" class="tournament-image">
-            <div class="statuses">
-                <div class="status en-curso">En curso</div>
+    <div class="main-container">
+        <div class="card" *ngFor="let torneo of torneos">
+            <div class="header">
+                <h2>{{ torneo.Torneo }}</h2>
+                <div class="buttons">
+                    <button (click)="editTorneo(torneo.idTorneo)">Editar</button>
+                    <button (click)="confirm(torneo.idTorneo)">Eliminar</button>
+                </div>
             </div>
-        </div>
-
-        <h2>Copa FEI</h2>
-        <div class="content">
-            <img src="../../../assets/copa.jpg" alt="Imagen del Torneo" class="tournament-image">
-            <div class="statuses">
-                <div class="status finalizado">Finalizado</div>
-            </div>
-        </div>
-
-        <h2>Torneo interno</h2>
-        <div class="content">
-            <img src="../../../assets/copa.jpg" alt="Imagen del Torneo" class="tournament-image">
-            <div class="statuses">
-                <div class="status cancelado">Pendiente</div>
+            <div class="content">
+                <img src="../../../assets/copa.jpg" alt="Imagen del Torneo" class="tournament-image">
+                <p>Deporte: {{ torneo.Deporte }}</p>
+                <p>Fecha de Inicio: {{ torneo.Inicio }}</p>
+                <div class="statuses">
+                    <div class="status" [ngClass]="{
+                        'en-curso': torneo.estatus === 'En curso', 
+                        'finalizado': torneo.estatus === 'Finalizado', 
+                        'pendiente': torneo.estatus === 'Pendiente'
+                    }">
+                        {{ torneo.estatus }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

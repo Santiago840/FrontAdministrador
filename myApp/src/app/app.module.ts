@@ -16,6 +16,11 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { EquiposComponent } from './components/equipos/equipos.component';
 import { EditarEquipoComponent } from './components/equipos/editar-equipo/editar-equipo.component';
 import { AgregarPartidosComponent } from './components/partidos/agregar-partidos/agregar-partidos.component';
+import { CommonModule } from '@angular/common';
+import { TorneosComponent } from './components/torneos/torneos.component';
+import { EditarTorneoComponent } from './components/editar-torneo/editar-torneo.component';
+
+
 
 @NgModule({
   declarations: [
@@ -24,6 +29,8 @@ import { AgregarPartidosComponent } from './components/partidos/agregar-partidos
     EquiposComponent,
     EditarEquipoComponent,
     AgregarPartidosComponent,
+    TorneosComponent,
+    EditarTorneoComponent
   ],
   
   imports: [
@@ -38,7 +45,7 @@ import { AgregarPartidosComponent } from './components/partidos/agregar-partidos
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-
+    CommonModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-LA' },

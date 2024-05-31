@@ -14,32 +14,67 @@ body {
     margin: 0;
 }
 
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .card {
     border: 1px solid #ccc;
     border-radius: 10px;
-    width: 300px;
+    width: 400px;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 20px; /* Agregado para separar las tarjetas */
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin: 0;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
 
 .content {
     display: flex;
+    flex-direction: column; /* Cambiado a columna para una mejor disposición */
     align-items: center;
 }
 
 .tournament-image {
     width: 100px;
     height: auto;
-    margin-right: 20px;
+    margin-bottom: 20px; /* Cambiado a margen inferior */
 }
 
 .statuses {
@@ -54,16 +89,17 @@ h2 {
     text-align: center;
     color: white;
     font-weight: bold;
+    width: 100%; /* Añadido para hacer que los estados sean de ancho completo */
 }
 
-.en-curso {
+.status.en-curso {
     background-color: green;
 }
 
-.finalizado {
+.status.finalizado {
     background-color: red;
 }
 
-.cancelado {
-    background-color: gray;
+.status.pendiente {
+    background-color: orange;
 }
