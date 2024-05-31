@@ -1,33 +1,37 @@
 <body>
-    <div class="card">
+    <div *ngFor="let equipo of equipos" class="card">
         <div class="header">
-            <h2>Nombre del Equipo</h2>
+            <h2>{{ equipo.nombreEquipo }}</h2>
             <div class="icons">
-                <a href="/editar-equipo">
+                <a [routerLink]="['/editar-equipo', equipo.idEquipo]">
                     <span class="icon">✎</span>
                 </a>
-                <span class="icon">🗑</span>
+                <span class="icon" (click)="eliminarEquipo(equipo.idEquipo)">🗑</span>
             </div>
         </div>
         <div class="content">
             <div class="column">
                 <div class="label">Capitán:</div>
-                <div class="ellipse">Nombre Capitán</div>
+                <div class="ellipse">{{ equipo.capitanEquipo }}</div>
             </div>
             <div class="column">
                 <div class="label">Integrantes:</div>
-                <div class="ellipse">Integrante 1</div>
-                <div class="ellipse">Integrante 2</div>
-                <div class="ellipse">Integrante 3</div>
-                <div class="ellipse">Integrante 4</div>
+                <div class="ellipse">{{ equipo.jugador1 }}</div>
+                <div class="ellipse">{{ equipo.jugador2 }}</div>
+                <div class="ellipse">{{ equipo.jugador3 }}</div>
+                <div class="ellipse">{{ equipo.jugador4 }}</div>
+                <div class="ellipse">{{ equipo.jugador5 }}</div>
+                <div class="ellipse">{{ equipo.jugador6 }}</div>
+                <div class="ellipse">{{ equipo.jugador7 }}</div>
+                <div class="ellipse">{{ equipo.jugador8 }}</div>
+                <div class="ellipse">{{ equipo.jugador9 }}</div>
             </div>
             <div class="column">
                 <div class="label">Suplentes:</div>
-                <div class="ellipse">Suplente 1</div>
-                <div class="ellipse">Suplente 2</div>
-                <div class="ellipse">Suplente 3</div>
-                <div class="ellipse">Suplente 4</div>
-                <div class="ellipse">Suplente 5</div>
+                <div class="ellipse">{{ equipo.matricula1 }}</div>
+                <div class="ellipse">{{ equipo.matricula2 }}</div>
+                <div class="ellipse">{{ equipo.matricula3 }}</div>
+                <div class="ellipse">{{ equipo.matricula4 }}</div>
             </div>
         </div>
     </div>
