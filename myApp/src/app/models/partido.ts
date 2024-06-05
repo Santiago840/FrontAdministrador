@@ -4,7 +4,7 @@ export interface Partido {
     idEquipo2: number;
     Equipo1: string;
     Equipo2: string;
-    Fecha: string;
+    fechaPartido: string;
     estatus: string;
     Torneo: string;
     idTorneo: number;

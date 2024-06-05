@@ -2,6 +2,8 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { EquiposService } from '../../services/equipos/equipos.service';
 import { Equipo } from '../../models/equipo';
+import { OptionModalComponent } from '../../modals/option-modal/option-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-pagina-principal',
@@ -26,7 +28,10 @@ export class PaginaPrincipalComponent implements AfterViewInit {
 
   }
 
-  constructor(private router: Router, private equiposService: EquiposService) { }
+  constructor(
+    private router: Router, 
+    private equiposService: EquiposService, 
+    private dialog: MatDialog) { }
 
   irEquipos(): void {
     this.router.navigate(['/equipos']);
@@ -61,6 +66,20 @@ export class PaginaPrincipalComponent implements AfterViewInit {
       }
     );
 
+  }
+
+  confirmar(): void {
+    const dialogRef = this.dialog.open(OptionModalComponent, {
+      width: '600px',
+      height: '180px',
+      data: { message: '¿Estás seguro de que quieres cerrar sesión?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.logout();
+      }
+    });
   }
 
   eliminarEquipo(idEquipo: number): void {

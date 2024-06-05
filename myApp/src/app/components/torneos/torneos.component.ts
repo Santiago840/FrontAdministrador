@@ -72,6 +72,21 @@ export class TorneosComponent implements OnInit {
     });
   }
 
+  confirmar(): void {
+    const dialogRef = this.dialog.open(OptionModalComponent, {
+      width: '600px',
+      height: '180px',
+      data: { message: '¿Estás seguro de que quieres cerrar sesión?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.logout();
+      }
+    });
+  }
+
+
   editTorneo(id: number): void {
     this.router.navigate(['/editar-torneo', id]);
   }

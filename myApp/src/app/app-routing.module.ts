@@ -9,6 +9,7 @@ import { EditarEquipoComponent } from './components/equipos/editar-equipo/editar
 import { AgregarPartidosComponent } from './components/partidos/agregar-partidos/agregar-partidos.component';
 import { EditarTorneoComponent } from './components/editar-torneo/editar-torneo.component';
 import { AgregarTorneoComponent } from './components/agregar-torneo/agregar-torneo.component';
+import { EditarPartidoComponent } from './components/partidos/editar-partido/editar-partido.component';
 
 export const routes: Routes = [
     { path: 'equipos', component: EquiposComponent},
@@ -20,6 +21,7 @@ export const routes: Routes = [
     {path:  'editar-torneo/:id',component: EditarTorneoComponent},
     { path: 'editar-equipo/:idEquipo', component: EditarEquipoComponent},
     { path: 'agregar-partido', component: AgregarPartidosComponent},
+    { path: 'editar-partido/:idPartido', component: EditarPartidoComponent},
     { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 @NgModule({

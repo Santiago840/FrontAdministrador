@@ -66,6 +66,13 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+#button-eliminar:hover {
+    background-color: red;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
 .content {
     margin-top: 10px;
     width: 100%;

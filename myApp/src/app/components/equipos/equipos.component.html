@@ -9,12 +9,14 @@
             <div class="icon-button" (click)="irPaginaAnterior()">
                 <i class="fas fa-arrow-left"></i>
             </div>
-            <div class="icon-button" (click)="logout()">
+            <div class="icon-button" (click)="confirmar()">
                 <i class="fas fa-sign-out-alt"></i>
             </div>
         </div>
     </header>
+    
     <div class="cards-container">
+        <h1>Gestión de Equipos</h1>
         <div *ngFor="let equipo of equipos" class="card">
             <div class="header2">
                 <h2>{{ equipo.nombreEquipo }}</h2>
@@ -22,7 +24,7 @@
                     <a (click)="editarEquipo(equipo.idEquipo)">
                         <span class="icon">✎</span>
                     </a>
-                    <span class="icon" (click)="eliminarEquipo(equipo.idEquipo)">🗑</span>
+                    <span id="button-eliminar" class="icon" (click)="confirm(equipo.idEquipo)">🗑</span>
                 </div>
             </div>
             <div class="content2">

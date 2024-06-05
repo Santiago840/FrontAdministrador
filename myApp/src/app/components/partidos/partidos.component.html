@@ -8,31 +8,32 @@
     <div class="icon-button" (click)="irPaginaAnterior()">
       <i class="fas fa-arrow-left"></i>
     </div>
-    <div class="icon-button" (click)="logout()">
+    <div class="icon-button" (click)="confirmar()">
       <i class="fas fa-sign-out-alt"></i>
     </div>
   </div>
 </header>
 
 <body>
-  <div class="partidos">
-    <h2>Cuartos de Final</h2>
-    <div class="teams">
-      <div *ngFor="let partido of partidos" class="team">
-        <div class="icons">
-          <a href="/agregar-partido">
-            <i class="fas fa-plus-circle"></i>
-          </a>
-          <i class="fas fa-edit"></i>
-          <span class="icon" (click)="eliminarPartido(partido.idPartido)">🗑</span>
-        </div>
-        <div class="team-name">
-          <div class="ellipse">{{ partido.Equipo1 }}</div>
-          <div class="vs">vs</div>
-          <div class="ellipse">{{ partido.Equipo2 }}</div>
+  <div class="content">
+    <h1>Gestión de Partidos</h1>
+    <div class="partidos">
+      <button class="add-partido-button" (click)="irAgregarPartido()">Agregar Partido</button>
+      <div class="teams">
+        <div *ngFor="let partido of partidos" class="team">
+          <div class="team-name">
+            <div class="ellipse">{{ partido.Equipo1 }}</div>
+            <div class="vs">vs</div>
+            <div class="ellipse">{{ partido.Equipo2 }}</div>
+          </div>
+          <div class="icons">
+            <a (click)="editarPartido(partido.idPartido)">
+              <span class="icon">✎</span>
+            </a>
+            <span id="button-eliminar" class="icon" (click)="confirm(partido.idPartido)">🗑</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
 </body>

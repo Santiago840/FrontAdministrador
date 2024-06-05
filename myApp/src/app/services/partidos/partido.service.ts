@@ -10,7 +10,7 @@ import { Partido } from '../../models/partido';
 export class PartidoService {
 
   ApiURL: String = environment.ApiUrl;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getPartidos(): Observable<any[]> {
     return this.http.get<any[]>(this.ApiURL + '/partidos').pipe(
@@ -21,8 +21,17 @@ export class PartidoService {
     );
   }
 
+  getPartido(idPartido: number): Observable<any> {
+    return this.http.get<any[]>(this.ApiURL + 'partido/' + `${idPartido}`).pipe(
+      catchError((error) => {
+        console.error('Error al cargar partido:', error);
+        return throwError(error);
+      })
+    );
+  }
+
   eliminarPartido(idPartido: number): Observable<any> {
-    return this.http.delete<any>(this.ApiURL+'partido/'+`${idPartido}`).pipe(
+    return this.http.delete<any>(this.ApiURL + 'partido/' + `${idPartido}`).pipe(
       catchError(error => {
         console.error('Error al eliminar partido:', error);
         return throwError(error);
@@ -31,7 +40,11 @@ export class PartidoService {
   }
 
   createPartido(partidoData: any): Observable<any> {
-    return this.http.post<any>(`${this.ApiURL}/equipoP`, partidoData);
+    return this.http.post<any>(`${this.ApiURL}partidoC/`, partidoData);
+  }
+
+  updatePartido(partidoData: any): Observable<any> {
+    return this.http.put<any>(`${this.ApiURL}partidoU`, partidoData);
   }
 
 }

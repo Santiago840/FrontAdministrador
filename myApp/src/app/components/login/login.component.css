@@ -1,150 +1,138 @@
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
-
-* {
-    list-style: none;
-    font-family: "Gill sans mt";
-    box-sizing: border-box;
-}
-
-.body {
-    background: #18529D;
-}
-
 header {
-    width: 100%;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-    background-color: transparent;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 header img {
-    max-height: 55px;
-    margin-left: 10px;
-    /* Ajustamos el margen izquierdo de la imagen */
+    width: 100%;
+    max-width: 200px;
+    height: auto;
 }
 
-h2 {
-    margin: 0;
-    font-size: 28px;
-    color: #000;
+.login-container {
     text-align: center;
-    /* Centramos el texto */
-    flex: 1;
-    /* Permite que el título ocupe el espacio restante */
-}
-
-
-
-.titulo {
-    font-size: 35px;
-    font-weight: bold;
-    color: #FFFFFF;
-    text-align: center;
-}
-
-.formulario {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 600px;
+    margin: 0 auto;
     padding: 20px;
-    transform: translate(-50%, -50%);
-    background: #28AD56;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    max-width: 400px;
+    border: 1px solid #ccc;
     border-radius: 10px;
+    margin-bottom: 10%; /* Añadir margen inferior para separar del footer */
+    box-sizing: border-box;
+}
+
+.formulario .user-box {
+    margin-bottom: 15px;
 }
 
 .formulario label {
-    /* position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px 0; */
-    font-size: 25px;
-    color: #FFFFFF;
-    pointer-events: none;
-    transition: .5s;
+    display: block;
+    margin-bottom: 5px;
 }
 
 .formulario input {
-    width: 100%;
-    padding: 10px 0;
-    font-size: 30px;
-    color: #FFFFFF;
-    margin-bottom: 30px;
-    border: none;
-    border-bottom: 1px solid #FFFFFF;
-    outline: none;
-    background: transparent;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .inicio {
-    text-decoration: none;
-    background: #18529D;
-    color: #FFFFFF;
     width: 100%;
-    height: 50px;
-    font-size: 25px;
+    padding: 10px;
+    background-color: #007bff;
     border: none;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .inicio:hover {
-    background-color: #005bb5;
-    color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-::placeholder {
-    color: #DED8D8;
-}
-
-h2 {
-    text-align: center;
-    font-size: 35px;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    max-height: 100px;
+    background-color: #0056b3;
 }
 
 footer {
-    width: 100%;
-    background-color: #0073e6;
-    padding: 20px 10%;
-    /* Reducimos el padding a 10% */
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    bottom: 0;
-    z-index: 1000;
+    padding-top: 20px;
+    background-color: #0056b3;
+    flex-wrap: wrap;
+    text-align: center;
 }
 
-.footer-left {
-    font-size: 16px;
+.footer-left div {
     color: white;
+    font-size: 1.2em;
 }
 
 .footer-right {
-    display: flex;
-    align-items: center;
+    text-align: right;
 }
 
-.footer-right .icon {
-    margin-left: 10px;
-    font-size: 32px;
-    color: white;
-    cursor: pointer;
+.footer-right a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.footer-right a .icon {
+    font-size: 24px;
     transition: all 0.3s ease;
 }
 
-.footer-right .icon:hover {
-    color: #005bb5;
+.footer-right a .icon:hover {
+    color: white;
+    background-color: blue;
+    padding: 5px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    .inicio {
+        font-size: 14px;
+        padding: 8px;
+    }
+    
+    .footer-left div, .footer-right {
+        font-size: 1em;
+        text-align: center;
+    }
+    
+    .footer-right {
+        text-align: center;
+    }
+
+    .footer-right a .icon {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    .inicio {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .footer-left div, .footer-right {
+        font-size: 0.9em;
+        text-align: center;
+    }
+
+    .footer-right a .icon {
+        font-size: 18px;
+    }
 }

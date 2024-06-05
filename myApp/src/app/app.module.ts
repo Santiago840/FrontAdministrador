@@ -22,6 +22,7 @@ import { EditarTorneoComponent } from './components/editar-torneo/editar-torneo.
 import { AgregarTorneoComponent } from './components/agregar-torneo/agregar-torneo.component';
 import { PartidosComponent } from './components/partidos/partidos.component';
 import { PaginaPrincipalComponent } from './components/pagina-principal/pagina-principal.component';
+import { EditarPartidoComponent } from './components/partidos/editar-partido/editar-partido.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PaginaPrincipalComponent } from './components/pagina-principal/pagina-p
     EditarTorneoComponent,
     AgregarTorneoComponent,
     PartidosComponent,
-    PaginaPrincipalComponent
+    PaginaPrincipalComponent,
+    EditarPartidoComponent,
   ],
   imports: [
     BrowserModule,

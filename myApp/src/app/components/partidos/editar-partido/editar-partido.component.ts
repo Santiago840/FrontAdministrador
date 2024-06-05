@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { PartidoService } from '../../../services/partidos/partido.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationModalComponent } from '../../../modals/confirmation-modal/confirmation-modal.component';
+import { Component } from '@angular/core';
 import { Equipo } from '../../../models/equipo';
-import { EquiposService } from '../../../services/equipos/equipos.service';
 import { Torneo } from '../../../models/Torneo';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PartidoService } from '../../../services/partidos/partido.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EquiposService } from '../../../services/equipos/equipos.service';
 import { TorneoService } from '../../../services/torneo.service';
+import { ConfirmationModalComponent } from '../../../modals/confirmation-modal/confirmation-modal.component';
 import { OptionModalComponent } from '../../../modals/option-modal/option-modal.component';
 
 @Component({
-  selector: 'app-agregar-partidos',
-  templateUrl: './agregar-partidos.component.html',
-  styleUrls: ['./agregar-partidos.component.css']
+  selector: 'app-editar-partido',
+  templateUrl: './editar-partido.component.html',
+  styleUrl: './editar-partido.component.css'
 })
-export class AgregarPartidosComponent implements OnInit {
+export class EditarPartidoComponent {
   partido: any = {};
   equipos: Equipo[] = [];
   torneos: Torneo[] = [];
@@ -31,22 +31,19 @@ export class AgregarPartidosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.llenarEquipos();
-    this.llenarTorneos();
-    this.setMinDate();
-    this.partido.estatus = this.estatus[0];
-  }
+    this.route.paramMap.subscribe(params => {
+      const idPartido = Number(params.get('idPartido'));
+      if (!isNaN(idPartido)) {
+        this.partidoService.getPartido(idPartido).subscribe(data => {
+          this.partido = data;
+          console.log(data);
 
-  confirmar(): void {
-    const dialogRef = this.dialog.open(OptionModalComponent, {
-      width: '600px',
-      height: '180px',
-      data: { message: '¿Estás seguro de que quieres cerrar sesión?' }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
-        this.logout();
+          // Recuperar los torneos (debes implementar este método)
+          this.llenarTorneos();
+        });
+      } else {
+        console.error('ID de equipo no válido.');
+        this.router.navigate(['/ruta-de-redireccion']);
       }
     });
   }
@@ -108,21 +105,26 @@ export class AgregarPartidosComponent implements OnInit {
   }
   submitForm(): void {
     if (this.validateForm()) {
-      this.partidoService.createPartido(this.partido).subscribe(
+      this.partidoService.updatePartido(this.partido).subscribe(
         (response) => {
-          console.log('Partido creado correctamente:', response);
+          console.log('Partido actualizado correctamente:', response);
           this.openConfirmationModal('Partido creado.');
           this.router.navigate(['/partidos']);
         },
         (error) => {
-          console.log(this.partido);
-          console.error('Error creando el partido:', error);
+          console.error('Error actualizando el partido:', error);
+
         }
       );
     }
   }
+
   irPaginaAnterior() {
     window.history.back();
+  }
+
+  irAgregarPartido() {
+    this.router.navigate(['/agregar-partido']);
   }
 
   logout() {
@@ -139,6 +141,20 @@ export class AgregarPartidosComponent implements OnInit {
 
   irPartidos(): void {
     this.router.navigate(['/partidos']);
+  }
+
+  confirmar(): void {
+    const dialogRef = this.dialog.open(OptionModalComponent, {
+      width: '600px',
+      height: '180px',
+      data: { message: '¿Estás seguro de que quieres cerrar sesión?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.logout();
+      }
+    });
   }
 
 }

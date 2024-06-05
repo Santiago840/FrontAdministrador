@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Equipo } from '../../models/equipo';
 import { EquiposService } from '../../services/equipos/equipos.service';
 import { Router } from '@angular/router';
+import { OptionModalComponent } from '../../modals/option-modal/option-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-equipos',
@@ -14,8 +16,24 @@ export class EquiposComponent implements OnInit {
 
   constructor(
     private equiposService: EquiposService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) { }
+
+  confirmar(): void {
+    const dialogRef = this.dialog.open(OptionModalComponent, {
+      width: '600px',
+      height: '180px',
+      data: { message: '¿Estás seguro de que quieres cerrar sesión?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.logout();
+      }
+    });
+  }
+
 
   ngOnInit(): void {
     this.obtenerEquipos();
@@ -35,6 +53,20 @@ export class EquiposComponent implements OnInit {
       }
     );
 
+  }
+
+  confirm(id: number): void {
+    const dialogRef = this.dialog.open(OptionModalComponent, {
+      width: '600px',
+      height: '180px',
+      data: { message: '¿Estás seguro de que quieres eliminar el equipo?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.eliminarEquipo(id);
+      }
+    });
   }
 
   eliminarEquipo(idEquipo: number): void {

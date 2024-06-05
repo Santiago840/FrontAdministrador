@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Partido } from '../../models/partido';
 import { PartidoService } from '../../services/partidos/partido.service';
 import { Router } from '@angular/router';
+import { ConfirmationModalComponent } from '../../modals/confirmation-modal/confirmation-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+import { OptionModalComponent } from '../../modals/option-modal/option-modal.component';
 
 @Component({
   selector: 'app-partidos',
@@ -14,11 +17,20 @@ export class PartidosComponent {
 
   constructor(
     private partidoService: PartidoService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
     this.obtenerPartidos();
+  }
+
+  openConfirmationModal(message: string): void {
+    this.dialog.open(ConfirmationModalComponent, {
+      width: '600px',
+      height: '150px',
+      data: { message: message }
+    });
   }
 
   obtenerPartidos(): void {
@@ -35,6 +47,20 @@ export class PartidosComponent {
     );
   }
 
+  confirm(id: number): void {
+    const dialogRef = this.dialog.open(OptionModalComponent, {
+      width: '600px',
+      height: '180px',
+      data: { message: '¿Estás seguro de que quieres eliminar el partido?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.eliminarPartido(id);
+      }
+    });
+  }
+
   eliminarPartido(idPartido: number): void {
     this.partidoService.eliminarPartido(idPartido).subscribe(
       response => {
@@ -44,7 +70,10 @@ export class PartidosComponent {
       },
       error => {
         console.error('Error al eliminar partido:', error);
-        this.mensajeError = 'Error al eliminar el partido. Por favor, inténtelo de nuevo más tarde.';
+        this.openConfirmationModal('Partido eliminado');
+        this.partidoService.getPartidos().subscribe(data => {
+          this.partidos = data;
+        });
       }
     );
   }
@@ -53,8 +82,16 @@ export class PartidosComponent {
     this.router.navigate(['/agregar-partido']);
   }
 
+  editarPartido(idPartido: number): void {
+    this.router.navigate(['/editar-partido/', idPartido])
+  }
+
   irPaginaAnterior() {
     window.history.back();
+  }
+
+  irAgregarPartido() {
+    this.router.navigate(['/agregar-partido']);
   }
 
   logout() {
@@ -72,5 +109,20 @@ export class PartidosComponent {
   irPartidos(): void {
     this.router.navigate(['/partidos']);
   }
+
+  confirmar(): void {
+    const dialogRef = this.dialog.open(OptionModalComponent, {
+      width: '600px',
+      height: '180px',
+      data: { message: '¿Estás seguro de que quieres cerrar sesión?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.logout();
+      }
+    });
+  }
+
 
 }

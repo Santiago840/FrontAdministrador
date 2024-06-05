@@ -38,7 +38,8 @@ export class EquiposService {
     );
   }
 
-  updateEquipo(equipoData: any): Observable<any> {
-    return this.http.put<any>(`${this.ApiURL}equipoU`, equipoData);
+  updateEquipo(idEquipo: number, equipoData: any): Observable<any> {
+    return this.http.put<any>(`${this.ApiURL}equipoU/${idEquipo}`, equipoData);
   }
+  
 }

@@ -5,6 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Equipo } from '../../../models/equipo';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from '../../../modals/confirmation-modal/confirmation-modal.component';
+import { Torneo } from '../../../models/Torneo';
+import { TorneoService } from '../../../services/torneo.service';
+import { OptionModalComponent } from '../../../modals/option-modal/option-modal.component';
 
 @Component({
   selector: 'app-editar-equipo',
@@ -12,34 +15,9 @@ import { ConfirmationModalComponent } from '../../../modals/confirmation-modal/c
   styleUrls: ['./editar-equipo.component.css']
 })
 export class EditarEquipoComponent implements OnInit {
-  equipo: Equipo={
-    idEquipo: 0,
-    nombreEquipo: '',
-    capitanEquipo: '',
-    jugadores: [],
-    jugador1: '',
-    jugador2: '',
-    jugador3: '',
-    jugador4: '',
-    jugador5: '',
-    jugador6: '',
-    jugador7: '',
-    jugador8: '',
-    jugador9: '',
-    matricula1: '',
-    matricula2: '',
-    matricula3: '',
-    matricula4: '',
-    matricula5: '',
-    matricula6: '',
-    matricula7: '',
-    matricula8: '',
-    matricula9: '',
-    matricula10: '',
-    nombre: '',
-    nombreTorneo: ''
-  }
-  jugadores: any ={};
+  equipo: any = {}
+  jugadores: any = {};
+  torneos: Torneo[] = [];
   deportes = [
     { id: 1, nombre: 'Voleibol' },
     { id: 2, nombre: 'Basquetbol' },
@@ -51,24 +29,49 @@ export class EditarEquipoComponent implements OnInit {
     private router: Router,
     private equiposService: EquiposService,
     private dialog: MatDialog,
+    private torneosService: TorneoService,
   ) { }
 
   ngOnInit(): void {
-    // Recuperar el ID del torneo de los parámetros de la ruta
     this.route.paramMap.subscribe(params => {
-      const idEquipo = Number(params.get('id'));
+      const idEquipo = Number(params.get('idEquipo'));
       if (!isNaN(idEquipo)) {
-        // Si se proporciona, recuperar el torneo del servicio
         this.equiposService.getEquipo(idEquipo).subscribe(data => {
           this.equipo = data;
+          console.log(data);
+
+          // Asignar el deporte al campo 'Deporte'
+          const deporteSeleccionado = this.deportes.find(d => d.id === this.equipo.idEquipo);
+          if (deporteSeleccionado) {
+            this.equipo.Deporte = deporteSeleccionado.nombre;
+          }
+
+          // Recuperar los torneos (debes implementar este método)
+          this.llenarTorneos();
         });
       } else {
-        // Si no se proporciona un ID de torneo válido, manejar el caso en consecuencia
-        console.error('ID de torneo no válido.');
-        // Por ejemplo, podrías redirigir a otra página
+        console.error('ID de equipo no válido.');
         this.router.navigate(['/ruta-de-redireccion']);
       }
     });
+  }
+
+  llenarTorneos(): void {
+    // Recupera los torneos disponibles (puedes llamar a un servicio o cargarlos localmente)
+    // Por ejemplo:
+    this.torneosService.getTorneos().subscribe(
+      (response: Torneo[]) => {
+        this.torneos = response;
+        // Asigna el torneo correspondiente al nombre del equipo
+        const torneoSeleccionado = this.torneos.find(torneo => torneo.Torneo === this.equipo.Torneo);
+        if (torneoSeleccionado) {
+          this.equipo.idTorneo = torneoSeleccionado.idTorneo;
+        }
+      },
+      (error) => {
+        console.error('Error obteniendo los torneos:', error);
+      }
+    );
   }
 
   openConfirmationModal(message: string): void {
@@ -80,21 +83,37 @@ export class EditarEquipoComponent implements OnInit {
   }
 
   submitForm(): void {
-    // Lógica para enviar el formulario (actualizar el torneo)
-    this.equiposService.updateEquipo(this.equipo).subscribe(
+    console.log('Equipo actualizado correctamente:', this.equipo);
+    // Lógica para enviar el formulario (actualizar el equipo)
+    this.equiposService.updateEquipo(this.equipo.idEquipo, this.equipo).subscribe(
       (response) => {
-        console.log('Torneo actualizado correctamente:', response);
-        // Redirigir a alguna otra página, por ejemplo, la lista de torneos
-        
+        console.log('Equipo actualizado correctamente:', response);
+        // Redirigir a alguna otra página, por ejemplo, la lista de equipos
+        this.openConfirmationModal('Equipo editado.');
+        this.router.navigate(['/equipos']);
       },
       (error) => {
-        console.error('Error actualizando el torneo:', error);
+        console.error('Error actualizando el equipo:', error);
         // Manejar el error, podrías mostrar un mensaje de error al usuario
-        this.openConfirmationModal('Torneo editado.');
-        this.router.navigate(['/equipos']);
+
       }
     );
   }
+  confirmar(): void {
+    const dialogRef = this.dialog.open(OptionModalComponent, {
+      width: '600px',
+      height: '180px',
+      data: { message: '¿Estás seguro de que quieres cerrar sesión?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.logout();
+      }
+    });
+  }
+
+
 
   irEquipos(): void {
     this.router.navigate(['/equipos']);

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TorneoService } from '../../services/torneo.service';
 import { ConfirmationModalComponent } from '../../modals/confirmation-modal/confirmation-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { OptionModalComponent } from '../../modals/option-modal/option-modal.component';
 
 @Component({
   selector: 'app-agregar-torneo',
@@ -47,11 +48,26 @@ export class AgregarTorneoComponent implements OnInit {
       data: { message: message }
     });
   }
+  confirmar(): void {
+    const dialogRef = this.dialog.open(OptionModalComponent, {
+      width: '600px',
+      height: '180px',
+      data: { message: '¿Estás seguro de que quieres cerrar sesión?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.logout();
+      }
+    });
+  }
+
 
   submitForm(): void {
     // Lógica para enviar el formulario (actualizar el torneo)
     this.torneoService.createTorneo(this.torneo).subscribe(
       (response) => {
+        console.log(this.torneo);
         console.log('Torneo creado torneo correctamente:', response);
         this.openConfirmationModal('Torneo creado.');
         this.router.navigate(['/torneos']);
