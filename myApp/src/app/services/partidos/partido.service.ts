@@ -44,7 +44,7 @@ export class PartidoService {
   }
 
   updatePartido(partidoData: any): Observable<any> {
-    return this.http.put<any>(`${this.ApiURL}partidoU`, partidoData);
+    return this.http.put<any>(`${this.ApiURL}partidoU/`, partidoData);
   }
 
 }

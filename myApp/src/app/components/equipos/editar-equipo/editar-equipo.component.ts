@@ -23,6 +23,7 @@ export class EditarEquipoComponent implements OnInit {
     { id: 2, nombre: 'Basquetbol' },
     { id: 3, nombre: 'Fútbol' }
   ];
+  matriculas: any = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -44,6 +45,33 @@ export class EditarEquipoComponent implements OnInit {
           const deporteSeleccionado = this.deportes.find(d => d.id === this.equipo.idEquipo);
           if (deporteSeleccionado) {
             this.equipo.Deporte = deporteSeleccionado.nombre;
+          }
+
+          if (data.matriculas) {
+            const matriculas = data.matriculas.split(',').map((matricula: string) => matricula.trim());
+            this.equipo.matricula1 = matriculas[0] || '';
+            this.equipo.matricula2 = matriculas[1] || '';
+            this.equipo.matricula3 = matriculas[2] || '';
+            this.equipo.matricula4 = matriculas[3] || '';
+            this.equipo.matricula5 = matriculas[4] || '';
+            this.equipo.matricula6 = matriculas[5] || '';
+            this.equipo.matricula7 = matriculas[6] || '';
+            this.equipo.matricula8 = matriculas[7] || '';
+            this.equipo.matricula9 = matriculas[8] || '';
+            this.equipo.matricula10 = matriculas[9] || '';
+          }
+
+          if (data.jugadores) {
+            const jugadores = data.jugadores.split(',').map((jugador: string) => jugador.trim());
+            this.equipo.jugador1 = jugadores[0] || '';
+            this.equipo.jugador2 = jugadores[1] || '';
+            this.equipo.jugador3 = jugadores[2] || '';
+            this.equipo.jugador4 = jugadores[3] || '';
+            this.equipo.jugador5 = jugadores[4] || '';
+            this.equipo.jugador6 = jugadores[5] || '';
+            this.equipo.jugador7 = jugadores[6] || '';
+            this.equipo.jugador8 = jugadores[7] || '';
+            this.equipo.jugador9 = jugadores[8] || '';
           }
 
           // Recuperar los torneos (debes implementar este método)
@@ -74,6 +102,8 @@ export class EditarEquipoComponent implements OnInit {
     );
   }
 
+
+
   openConfirmationModal(message: string): void {
     this.dialog.open(ConfirmationModalComponent, {
       width: '600px',
@@ -83,8 +113,10 @@ export class EditarEquipoComponent implements OnInit {
   }
 
   submitForm(): void {
-    console.log('Equipo actualizado correctamente:', this.equipo);
     // Lógica para enviar el formulario (actualizar el equipo)
+    
+
+    console.log('Equipo actualizado correctamente:', this.equipo);
     this.equiposService.updateEquipo(this.equipo.idEquipo, this.equipo).subscribe(
       (response) => {
         console.log('Equipo actualizado correctamente:', response);

@@ -27,7 +27,7 @@ export class EditarPartidoComponent {
     private partidoService: PartidoService,
     private dialog: MatDialog,
     private equiposService: EquiposService,
-    private torneoService: TorneoService
+    private torneosService: TorneoService
   ) { }
 
   ngOnInit(): void {
@@ -83,11 +83,15 @@ export class EditarPartidoComponent {
   }
 
   llenarTorneos(): void {
-    this.torneoService.getTorneos().subscribe(
+    // Recupera los torneos disponibles (puedes llamar a un servicio o cargarlos localmente)
+    // Por ejemplo:
+    this.torneosService.getTorneos().subscribe(
       (response: Torneo[]) => {
         this.torneos = response;
-        if (this.torneos.length > 0) {
-          this.partido.idTorneo = this.torneos[0].idTorneo;
+        // Asigna el torneo correspondiente al nombre del equipo
+        const torneoSeleccionado = this.torneos.find(torneo => torneo.Torneo === this.partido.Torneo);
+        if (torneoSeleccionado) {
+          this.partido.idTorneo = torneoSeleccionado.idTorneo;
         }
       },
       (error) => {
