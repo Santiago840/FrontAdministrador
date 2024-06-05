@@ -113,10 +113,32 @@ export class EditarEquipoComponent implements OnInit {
   }
 
   submitForm(): void {
-    // Lógica para enviar el formulario (actualizar el equipo)
-    
-
     console.log('Equipo actualizado correctamente:', this.equipo);
+    // Lógica para enviar el formulario (actualizar el equipo)
+    this.equipo.matriculas = [
+      this.equipo.matricula1,
+      this.equipo.matricula2,
+      this.equipo.matricula3,
+      this.equipo.matricula4,
+      this.equipo.matricula5,
+      this.equipo.matricula6,
+      this.equipo.matricula7,
+      this.equipo.matricula8,
+      this.equipo.matricula9,
+      this.equipo.matricula10
+    ].join(',');
+
+    this.equipo.jugadores = [
+      this.equipo.jugador1,
+      this.equipo.jugador2,
+      this.equipo.jugador3,
+      this.equipo.jugador4,
+      this.equipo.jugador5,
+      this.equipo.jugador6,
+      this.equipo.jugador7,
+      this.equipo.jugador8,
+      this.equipo.jugador9
+    ].join(',');
     this.equiposService.updateEquipo(this.equipo.idEquipo, this.equipo).subscribe(
       (response) => {
         console.log('Equipo actualizado correctamente:', response);

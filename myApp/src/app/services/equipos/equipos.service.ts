@@ -9,7 +9,7 @@ import { environment } from '../../../enviroments/enviroment';
 export class EquiposService {
 
   ApiURL: String = environment.ApiUrl;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getEquipos(): Observable<any[]> {
     return this.http.get<any[]>(this.ApiURL + '/equiposG').pipe(
@@ -21,12 +21,16 @@ export class EquiposService {
   }
 
   getEquipo(idEquipo: number): Observable<any> {
-    return this.http.get<any[]>(this.ApiURL + 'equipoG/'+`${idEquipo}`).pipe(
+    return this.http.get<any[]>(this.ApiURL + 'equipoG/' + `${idEquipo}`).pipe(
       catchError((error) => {
         console.error('Error al cargar equipo:', error);
         return throwError(error);
       })
     );
+  }
+
+  createEquipo(equipoData: any): Observable<any> {
+    return this.http.post<any>(`${this.ApiURL}equipoP/`, equipoData);
   }
 
   eliminarEquipo(idEquipo: number): Observable<any> {
@@ -41,5 +45,5 @@ export class EquiposService {
   updateEquipo(idEquipo: number, equipoData: any): Observable<any> {
     return this.http.put<any>(`${this.ApiURL}equipoU/${idEquipo}`, equipoData);
   }
-  
+
 }

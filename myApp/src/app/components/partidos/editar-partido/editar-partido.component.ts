@@ -125,19 +125,30 @@ export class EditarPartidoComponent {
   }
   submitForm(): void {
     if (this.validateForm()) {
-      this.partidoService.updatePartido(this.partido).subscribe(
+      this.partidoService.createPartido(this.partido).subscribe(
         (response) => {
-          console.log('Partido actualizado correctamente:', response);
-          this.openConfirmationModal('Partido creado.');
-          this.router.navigate(['/partidos']);
+          console.log('Partido creado exitosamente:', response);
+          this.router.navigate(['/partidos']); // Redireccionar a la página de partidos
         },
         (error) => {
-          console.error('Error actualizando el partido:', error);
+          console.error('Error al crear partido:', error);
+          // Manejar el error de creación del partido
+        }
+      );
 
+      this.partidoService.eliminarPartido(this.partido.idPartido).subscribe(
+        (response) => {
+          console.log('Partido eliminado exitosamente:', response);
+          // Realizar acciones adicionales después de eliminar el partido si es necesario
+        },
+        (error) => {
+          console.error('Error al eliminar partido:', error);
+          // Manejar el error de eliminación del partido
         }
       );
     }
   }
+
 
   irPaginaAnterior() {
     window.history.back();
