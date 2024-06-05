@@ -38,8 +38,13 @@ export class EditarPartidoComponent {
           this.partido = data;
           console.log(data);
 
+          this.setMinDate();
+
+
           // Recuperar los torneos (debes implementar este método)
           this.llenarTorneos();
+          this.llenarEquipos();
+
         });
       } else {
         console.error('ID de equipo no válido.');
@@ -64,16 +69,21 @@ export class EditarPartidoComponent {
       data: { message: message }
     });
   }
-
   llenarEquipos(): void {
     this.equiposService.getEquipos().subscribe(
       (response: Equipo[]) => {
         this.equipos = response;
         if (this.equipos.length > 0) {
-          this.partido.idEquipo1 = this.equipos[0].idEquipo;
-          this.partido.idEquipo2 = this.equipos[1].idEquipo;
+          const equipo1 = this.equipos.find(equipo => equipo.nombreEquipo === this.partido.Equipo1);
+          const equipo2 = this.equipos.find(equipo => equipo.nombreEquipo === this.partido.Equipo2);
+          if (equipo1) {
+            this.partido.idEquipo1 = equipo1.idEquipo;
+          }
+          if (equipo2) {
+            this.partido.idEquipo2 = equipo2.idEquipo;
+          }
         } else {
-          this.partido.idEquipo1 = this.equipos[0].idEquipo;
+          console.error('No se encontraron equipos.');
         }
       },
       (error) => {
@@ -81,6 +91,12 @@ export class EditarPartidoComponent {
       }
     );
   }
+
+  llenarFecha(): void {
+    const fechaPartido = new Date(this.partido.Fecha);
+    this.minDate = fechaPartido.toISOString().split('T')[0];
+  }
+
 
   llenarTorneos(): void {
     // Recupera los torneos disponibles (puedes llamar a un servicio o cargarlos localmente)

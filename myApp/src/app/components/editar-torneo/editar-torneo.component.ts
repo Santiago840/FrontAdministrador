@@ -17,6 +17,7 @@ export class EditarTorneoComponent implements OnInit {
     { id: 2, nombre: 'Basquetbol' },
     { id: 3, nombre: 'Fútbol' }
   ];
+  
 
   constructor(
     private route: ActivatedRoute,
@@ -64,7 +65,6 @@ export class EditarTorneoComponent implements OnInit {
       }
     });
   }
-
 
   submitForm(): void {
     // Lógica para enviar el formulario (actualizar el torneo)

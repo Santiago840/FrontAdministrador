@@ -12,6 +12,12 @@ header {
     top: 0;
 }
 
+.title{
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
 .menu {
     display: flex;
     justify-content: center;
@@ -181,4 +187,119 @@ button:hover {
 #agregar {
     margin-bottom: 30px;
     font-size: 20px;
+}
+
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* Header */
+header {
+    width: 100%;
+    background-color: #0073e6;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    background-color: #0073e6;
+}
+
+.menu a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+}
+
+.menu a:hover {
+    background-color: #005bb5;
+    color: white;
+    border-radius: 4px;
+}
+
+.icon-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.icon-button {
+    margin-right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.icon-button:last-child {
+    margin-right: 0;
+}
+
+.icon-button:hover {
+    background-color: #005bb5;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor principal */
+.main-container {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Media queries */
+@media screen and (max-width: 768px) {
+    .menu a {
+        font-size: 12px;
+    }
+    .icon-button {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .menu {
+        display: none;
+    }
+    .icon-buttons {
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+    .icon-button {
+        margin-right: 0;
+        margin-left: 10px;
+    }
 }

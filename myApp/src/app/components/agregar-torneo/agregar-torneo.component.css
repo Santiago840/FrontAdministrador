@@ -11,6 +11,11 @@ header {
   top: 0;
 }
 
+.title{
+  text-align: center;
+  padding-top: 70px;
+}
+
 .menu {
   display: flex;
   justify-content: center;
@@ -63,7 +68,7 @@ header {
   border: 1px solid #ccc;
   border-radius: 30px;
   width: 600px;
-  height: 400px;
+  height: 450px;
   margin: 0 auto;
   /* Centra la tarjeta horizontalmente en la página */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -95,12 +100,12 @@ label {
   border: 1px solid #ccc;
   border-radius: 30px;
   width: 600px;
-  padding-top: 50px; /* Padding en la parte superior */
+  padding-top: 0px; /* Padding en la parte superior */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
 }
 .card-body {
-  padding-top: 50px; /* Padding en la parte superior */
+  padding-top: 0px; /* Padding en la parte superior */
   padding: 50px;
   display: flex;
   flex-direction: column;

@@ -85,6 +85,11 @@ form {
     margin-bottom: 15px;
 }
 
+.title{
+    text-align: center;
+    padding-top: 50px;
+}
+
 .form-group .input-group {
     display: flex;
     flex-direction: column;
