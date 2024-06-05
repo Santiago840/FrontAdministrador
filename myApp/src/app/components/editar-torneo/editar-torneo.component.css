@@ -64,11 +64,12 @@ header {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Estilos del formulario */
 .card {
   border: 1px solid #ccc;
   border-radius: 30px;
-  width: 600px;
-  height: 400px;
+  width: 90%; /* Cambiado a un porcentaje para que sea responsive */
+  max-width: 600px; /* Añadido un máximo para que no se vea demasiado ancho en pantallas grandes */
   margin: 0 auto;
   /* Centra la tarjeta horizontalmente en la página */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -77,25 +78,27 @@ header {
 
 .card-body {
   padding: 50px;
-  margin-left: 80px;
 }
 
 .form-group {
   margin-bottom: 20px;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 label {
   font-weight: bold;
   font-size: 25px;
-  text-align: right;
-  /* Tamaño de letra aumentado */
+  margin-bottom: 10px;
+  text-align: left; /* Cambiado a la izquierda */
 }
 
 /* Estilo para los campos de entrada */
 .form-control {
   font-size: 18px;
-  /* Tamaño de letra aumentado */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 /* Estilo para el botón */
@@ -107,9 +110,33 @@ label {
   border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
-  /* Tamaño de letra aumentado */
+  margin-top: 20px;
+  width: 50%; /* Ancho del botón al 50% para centrarlo */
+  max-width: 200px; /* Máximo ancho del botón */
+  margin-left: auto; /* Alinear a la derecha */
+  margin-right: auto; /* Alinear a la izquierda */
+  display: block; /* Hacer que el botón sea un bloque para poder centrarlo */
 }
 
 .btn-primary:hover {
   background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  /* Estilos para pantallas pequeñas */
+  .card {
+    width: 90%;
+    padding: 20px; /* Reducir el padding en pantallas pequeñas */
+  }
+
+  .form-control {
+    width: 100%; /* Ancho completo para los campos de entrada */
+  }
+
+  .btn-primary {
+    width: 100%; /* Ancho completo para el botón */
+    max-width: none; /* Eliminar el máximo ancho */
+    margin-left: 0; /* Eliminar el margen izquierdo */
+    margin-right: 0; /* Eliminar el margen derecho */
+  }
 }
